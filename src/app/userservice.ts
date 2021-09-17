@@ -16,6 +16,11 @@ export class Userservice {
         return new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token")).set("Ocp-Apim-Subscription-Key", "8c38b1a7d5244adabbc43aea593fb465");
     }
 
+    getLoginHeaderObject() : HttpHeaders
+    {
+      return new HttpHeaders().set("Ocp-Apim-Subscription-Key", "8c38b1a7d5244adabbc43aea593fb465");
+    }
+
     getTodoList() : Observable<TodoTask[]>
     {
       const url = this.baseUrl + "api/TodoTasks"
@@ -44,19 +49,19 @@ export class Userservice {
     registerUser(user: User) : Observable<User>
     {
       const url = this.baseUrl + "api/Account/register";
-      return this.http.post<User>(url,user);
+      return this.http.post<User>(url,user, {headers: this.getLoginHeaderObject()});
     }
 
     loginUser(user: User) : Observable<UserInformation>
     {
       const url = this.baseUrl + "api/Account/login"
-      return this.http.post<UserInformation>(url,user);
+      return this.http.post<UserInformation>(url,user, {headers: this.getLoginHeaderObject()});
     }
 
     getAccountInformation(userId: string) : Observable<User>
     {
       const url = this.baseUrl + "api/Account/" + userId;
-      return this.http.get<User>(url);
+      return this.http.get<User>(url, {headers: this.getLoginHeaderObject()});
     }
   }
   export class TodoTask {
