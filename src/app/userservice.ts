@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 export class Userservice {
     constructor(private http: HttpClient) { }
 
+     baseUrl = "https://todobackend.azure-api.net/v1/"
+
     getHeaderObject() : HttpHeaders
     {
         return new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token"));
@@ -16,44 +18,44 @@ export class Userservice {
 
     getTodoList() : Observable<TodoTask[]>
     {
-      const url = "https://localhost:44370/api/TodoTasks"
+      const url = this.baseUrl + "api/TodoTasks"
       return this.http.get<TodoTask[]>(url, {headers: this.getHeaderObject()} );
     }
 
     createTodoTask(task: TodoTask) : Observable<TodoTask>
     {
-      const url = "https://localhost:44370/api/TodoTasks"
+      const url = this.baseUrl + "api/TodoTasks"
       task.priority = parseInt(task.priority.toString());
       return this.http.post<TodoTask>(url,task, {headers: this.getHeaderObject()})
     }
     editTodoTask(task: TodoTask) : Observable<TodoTask>
     {
-      const url = "https://localhost:44370/api/TodoTasks/" + task.todoId;
+      const url = this.baseUrl + "api/TodoTasks/" + task.todoId;
       task.priority = parseInt(task.priority.toString());
       return this.http.put<TodoTask>(url,task, {headers: this.getHeaderObject()});
     }
 
     deleteTodoTask(task: TodoTask) : Observable<number>
     {
-      const url = "https://localhost:44370/api/TodoTasks/" + task.todoId;
+      const url = this.baseUrl + "api/TodoTasks/" + task.todoId;
       return this.http.delete<number>(url, {headers: this.getHeaderObject()});
     }
 
     registerUser(user: User) : Observable<User>
     {
-      const url = "https://localhost:44370/api/Account/register";
+      const url = this.baseUrl + "api/Account/register";
       return this.http.post<User>(url,user);
     }
 
     loginUser(user: User) : Observable<UserInformation>
     {
-      const url = "https://localhost:44370/api/Account/login"
+      const url = this.baseUrl + "api/Account/login"
       return this.http.post<UserInformation>(url,user);
     }
 
     getAccountInformation(userId: string) : Observable<User>
     {
-      const url = "https://localhost:44370/api/Account/" + userId;
+      const url = this.baseUrl + "api/Account/" + userId;
       return this.http.get<User>(url);
     }
   }
