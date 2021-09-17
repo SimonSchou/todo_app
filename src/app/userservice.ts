@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class Userservice {
     constructor(private http: HttpClient) { }
 
-     baseUrl = "https://todobackend.azure-api.net/"
+     baseUrl = "https://todobackend.azure-api.net/v1/"
 
     getHeaderObject() : HttpHeaders
     {
