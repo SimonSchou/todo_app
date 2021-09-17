@@ -1,0 +1,24 @@
+<mat-card>
+    <form (ngSubmit)="register()">
+        <h2 mat-dialog-title>Register you as a user</h2>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>First name</mat-label>
+            <input matInput type="text" [(ngModel)]="user.firstName" name="firstname">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Last name</mat-label>
+            <input matInput type="text" [(ngModel)]="user.lastName" name="lastName">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="user.email" name="email">
+        </mat-form-field>
+        <mat-form-field appearance="fill" color="warn">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" [(ngModel)]="user.password" name="password">
+        </mat-form-field>
+        <button mat-button class="button" type="submit">
+            <span>Register user</span>
+        </button>
+    </form>
+</mat-card>
