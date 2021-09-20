@@ -13,7 +13,7 @@ export class Userservice {
 
     getHeaderObject() : HttpHeaders
     {
-        return new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token")).set("Ocp-Apim-Subscription-Key", "subscription-key 8c38b1a7d5244adabbc43aea593fb465");
+        return new HttpHeaders().set("Authorization", "Bearer " + localStorage.getItem("token")).set("Ocp-Apim-Subscription-Key", "8c38b1a7d5244adabbc43aea593fb465");
     }
 
     getLoginHeaderObject() : HttpHeaders
